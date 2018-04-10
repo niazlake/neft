@@ -20530,7 +20530,7 @@ export class HomePage {
   @ViewChild('height2') height2;
   @ViewChild('pressure') pressure;
 
-  constructor(public navCtrl: NavController, private toastCtrl: ToastController, private  storage: Storage) {
+  constructor(public navCtrl: NavController, private toastCtrl: ToastController) {
     for (var i = 14; i <= 106; i++) {
       this.inCheck.push(i)
       if (i == 25) {
