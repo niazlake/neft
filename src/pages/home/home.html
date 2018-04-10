@@ -16,37 +16,26 @@
     </ion-item>
     <ion-item>
       <ion-label>Высота - 1(м) :</ion-label>
-      <ion-input type="tel"
-                 class="input_tele"
-                 name="token"
-                 [(ngModel)]="user1.token1"
-                 (ngModelChange)="tokenChange1($event, ctrl)"
-      ></ion-input>
+      <ion-input type="tel" #height1></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Высота - 2(м) :</ion-label>
-      <ion-input type="tel"
-                 class="input_tele"
-                 name="token"
-                 [(ngModel)]="user2.token2"
-                 (ngModelChange)="tokenChange2($event, ctrl)"
-      ></ion-input>
+      <ion-input type="tel" #height2></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Плотность нефти (кг/м^3) :</ion-label>
-      <ion-input type="tel"
-                 class="input_tele"
-                 name="token"
-                 [(ngModel)]="user3.token3"
-                 (ngModelChange)="tokenChange3($event, ctrl)"
-      ></ion-input>
+      <ion-input type="tel" #pressure></ion-input>
     </ion-item>
 
   </ion-list>
 
   <button ion-button block (click)="getAll()">Рассчитать</button>
 
-  {{values[0]}}
+  <div class = "ans" *ngIf="showStatement">
+
+    <h2>Обьем нефти (м^3): {{volume}}</h2>
+    <h2>Масса нефти (кг): {{mass}}</h2>
+  </div>
 </ion-content>

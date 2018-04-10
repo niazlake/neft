@@ -1,8 +1,5 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {Observable} from "rxjs/Observable";
-import {HttpClient} from "@angular/common/http";
-import {map} from 'rxjs/operators/map';
+import {Component, ViewChild} from '@angular/core';
+import {NavController, ToastController} from 'ionic-angular';
 
 const MAX_LENGTH = 3;
 const MAX_LENGTH2 = 4;
@@ -20524,29 +20521,31 @@ export class HomePage {
   user2: any = {};
   user3: any = {};
   get_from = []
+  showStatement = false;
+  validat: any;
+  inCheck: any = []
+  volume = 0
+  mass = 0
+  @ViewChild('height1') height1;
+  @ViewChild('height2') height2;
+  @ViewChild('pressure') pressure;
 
-  validat:any;
-  height1: any;
-  height2: any;
-  pressure: any;
-  inCheck:any = []
-
-  constructor(public navCtrl: NavController) {
-    for (var i = 0; i < 64; i++) {
+  constructor(public navCtrl: NavController, private toastCtrl: ToastController, private  storage: Storage) {
+    for (var i = 14; i <= 106; i++) {
       this.inCheck.push(i)
-      if(i == 25){
+      if (i == 25) {
         this.inCheck.push("25a")
       }
-      else if(i == 26){
+      else if (i == 26) {
         this.inCheck.push("26a")
       }
-      else if(i == 27){
+      else if (i == 27) {
         this.inCheck.push("27a")
       }
-      else if(i == 35){
+      else if (i == 35) {
         this.inCheck.push("35a")
       }
-      else if(i == 53){
+      else if (i == 53) {
         this.inCheck.push("53a")
       }
     }
@@ -20554,45 +20553,45 @@ export class HomePage {
 
   ionViewWillEnter() {
     console.log(this.values[0][14][20])
-    console.log("herererre",this.values[0])
+    console.log("herererre", this.values[0])
 
-  }
-
-  tokenChange1($event, ctrl) {
-    setTimeout(() => {
-      if (this.user1.token1.length > MAX_LENGTH) {
-        this.user1.token1 = this.user1.token1.substr(0, MAX_LENGTH)
-        this.height1 = this.user1.token1;
-      }
-    }, 0)
   }
 
   getAll() {
-    console.log("VALIDAT:", this.validat)
-    console.log("height2:", this.height2)
-    console.log("height1:", this.height1)
-    console.log("pressure:", this.pressure)
+    if (this.validat == null) {
+      this.presentToast("Извините, выберите тип! ")
+    }
+    else {
+      if (this.values[0][this.validat][this.height1.value] == null || this.values[0][this.validat][this.height2.value] == null) {
+        this.presentToast("Извините, такой высоты нету! ")
+      } else {
+        this.volume = (Number(this.values[0][this.validat][this.height1.value]) + Number(this.values[0][this.validat][this.height2.value])) / 2 * 0.001
+        this.mass = this.volume * Number(this.pressure.value)
+        this.showStatement = true
+
+
+      }
+    }
 
   }
-  onChange(carbrand){
+
+  presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+
+  onChange(carbrand) {
     this.validat = carbrand;
   }
-  tokenChange2($event, ctrl) {
-    setTimeout(() => {
-      if (this.user2.token2.length > MAX_LENGTH) {
-        this.user2.token2 = this.user2.token2.substr(0, MAX_LENGTH)
-        this.height2 = this.user2.token2;
-      }
-    }, 0)
-  }
 
-  tokenChange3($event, ctrl) {
-    setTimeout(() => {
-      if (this.user3.token3.length > MAX_LENGTH2) {
-        this.user3.token3 = this.user3.token3.substr(0, MAX_LENGTH2)
-        this.pressure = this.user3.token3;
-      }
-    }, 0)
-  }
 
 }
