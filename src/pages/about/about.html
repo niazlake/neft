@@ -7,5 +7,13 @@
 </ion-header>
 
 <ion-content padding>
-
+    <ion-card *ngFor="let item of alldata; let i = index">
+      <ion-card-header>
+        Рассчет {{i+1}}
+      </ion-card-header>
+      <ion-card-content>
+        <p>Обьем : {{item.valume}} м^3</p>
+        <p>Масса : {{item.mass}} кг</p>
+      </ion-card-content>
+    </ion-card>
 </ion-content>

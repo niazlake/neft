@@ -1,17 +1,19 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
-import { TextMaskModule } from 'angular2-text-mask';
+import {NgModule, ErrorHandler} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import {MyApp} from './app.component';
+import {TextMaskModule} from 'angular2-text-mask';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import {AboutPage} from '../pages/about/about';
+import {ContactPage} from '../pages/contact/contact';
+import {HomePage} from '../pages/home/home';
+import {TabsPage} from '../pages/tabs/tabs';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { HttpClientModule } from "@angular/common/http";
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {HttpClientModule} from "@angular/common/http";
+import {IonicStorageModule} from "@ionic/storage";
+import { DatasProvider } from '../providers/datas/datas';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserModule,
     IonicModule.forRoot(MyApp),
     TextMaskModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,7 +42,10 @@ import { HttpClientModule } from "@angular/common/http";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatasProvider,
+
   ]
 })
-export class AppModule {}
+export class AppModule {
+}
