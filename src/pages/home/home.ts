@@ -55,8 +55,6 @@ export class HomePage {
 
   ionViewWillEnter() {
 
-    console.log(this.values[0][0]["14"]["5"])
-
   }
 
   getAll() {
@@ -72,8 +70,8 @@ export class HomePage {
         this.showStatement = true
         let data = {
           validat : this.validat,
-          mass : this.mass,
-          volume : this.volume
+          mass : Math.round(this.mass * 100) / 100,
+          volume : Math.round(this.volume*100) /100
         }
         this.storage.addList(data)
       }
@@ -97,5 +95,8 @@ export class HomePage {
 
   onChange(carbrand) {
     this.validat = carbrand;
+  }
+  ionViewWillLeave(){
+    this.showStatement = false
   }
 }
