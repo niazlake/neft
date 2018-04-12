@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {App, NavController} from 'ionic-angular';
 import {StorageProvider} from "../../providers/storage/storage";
 import {TabsPage} from "../tabs/tabs";
 
@@ -11,7 +11,7 @@ export class AboutPage {
 
   alldata: any;
   showme = true
-  constructor(public navCtrl: NavController, public storage: StorageProvider) {
+  constructor(public navCtrl: NavController, public storage: StorageProvider,       public appCtrl: App) {
     storage.getList().then((val) => {
       this.alldata = val
     })
@@ -26,6 +26,6 @@ export class AboutPage {
     }
   }
   pushPages(){
-    this.navCtrl.push(TabsPage);
+    this.appCtrl.getRootNav().push(TabsPage);
   }
 }
