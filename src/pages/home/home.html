@@ -38,9 +38,10 @@
   <button ion-button block (click)="getAll()">Рассчитать</button>
 
   <div class = "ans" *ngIf="showStatement">
-
-    <h2>Обьем нефти (м^3): {{volume}}</h2>
+    <h2>Рассчет массы и Обьема</h2>
     <hr>
-    <h2>Масса нефти (кг): {{mass}}</h2>
+    <p>Обьем нефти (м^3): {{volume}}</p>
+    <hr>
+    <p>Масса нефти (кг): {{mass}}</p>
   </div>
 </ion-content>
