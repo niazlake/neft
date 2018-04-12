@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import {Storage} from '@ionic/storage';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
+import {StorageProvider} from "../../providers/storage/storage";
+import {TabsPage} from "../tabs/tabs";
 
 @Component({
   selector: 'page-about',
@@ -8,14 +9,23 @@ import {Storage} from '@ionic/storage';
 })
 export class AboutPage {
 
-  alldata :any
-  constructor(public navCtrl: NavController, public storage: Storage) {
-    storage.get("list").then((val)=>{
-      this.alldata = val;
+  alldata: any;
+  showme = true
+  constructor(public navCtrl: NavController, public storage: StorageProvider) {
+    storage.getList().then((val) => {
+      this.alldata = val
     })
   }
-  ionViewWillEnter(){
-    console.log(this.alldata)
-  }
 
+  ionViewWillEnter() {
+    if(this.alldata.length == 0){
+      this.showme = true
+    }
+    else {
+      this.showme = false
+    }
+  }
+  pushPages(){
+    this.navCtrl.push(TabsPage);
+  }
 }

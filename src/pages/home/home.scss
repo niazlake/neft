@@ -1,9 +1,18 @@
 page-home {
-.ans{
-  margin-top: 24px;
-}
-  h2{
+  .ans {
+    margin-top: 24px;
+  }
+  h2 {
     font-size: 18px;
     line-height: 24px;
+  }
+  .logotype{
+    display: inline-block;
+    background-image: url("../assets/img/img_main.png");
+    width: 48px;
+    height: 40px;
+    margin-right: 16px;
+    background-size: cover;
+
   }
 }

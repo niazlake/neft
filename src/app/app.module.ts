@@ -14,6 +14,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpClientModule} from "@angular/common/http";
 import {IonicStorageModule} from "@ionic/storage";
 import { DatasProvider } from '../providers/datas/datas';
+import { StorageProvider } from '../providers/storage/storage';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DatasProvider } from '../providers/datas/datas';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatasProvider,
+    StorageProvider,
 
   ]
 })

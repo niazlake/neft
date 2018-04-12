@@ -6,13 +6,30 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding style="background-color: #f5f5f5">
+  <div *ngIf = "showme">
+    <ion-grid >
+      <ion-row>
+        <ion-col class="inCenter">
+          <h2>У вас еще нет рассчетов</h2>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ButtonON">
+          <button ion-button class="rectangle" (click)="pushPages()">Сделать рассчет</button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+  </div>
+
     <ion-card *ngFor="let item of alldata; let i = index">
       <ion-card-header>
         Рассчет {{i+1}}
       </ion-card-header>
       <ion-card-content>
-        <p>Обьем : {{item.valume}} м^3</p>
+        <p>Обьем : {{item.volume}} м^3</p>
         <p>Масса : {{item.mass}} кг</p>
       </ion-card-content>
     </ion-card>

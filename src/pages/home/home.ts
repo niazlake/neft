@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {NavController, ToastController} from 'ionic-angular';
 import {DatasProvider} from "../../providers/datas/datas";
+import {StorageProvider} from "../../providers/storage/storage";
 
 const MAX_LENGTH = 3;
 const MAX_LENGTH2 = 4;
@@ -26,7 +27,7 @@ export class HomePage {
   @ViewChild('height2') height2;
   @ViewChild('pressure') pressure;
 
-  constructor(public navCtrl: NavController, private toastCtrl: ToastController, data: DatasProvider) {
+  constructor(public navCtrl: NavController, private toastCtrl: ToastController, data: DatasProvider, public storage : StorageProvider) {
     for (var i = 14; i <= 106; i++) {
       this.inCheck.push(i)
       if (i == 25) {
@@ -69,8 +70,12 @@ export class HomePage {
         this.volume = (Number(this.values[0][0][this.validat][this.height1.value]) + Number(this.values[0][0][this.validat][this.height2.value])) / 2 * 0.001
         this.mass = this.volume * Number(this.pressure.value)
         this.showStatement = true
-
-
+        let data = {
+          validat : this.validat,
+          mass : this.mass,
+          volume : this.volume
+        }
+        this.storage.addList(data)
       }
     }
 
